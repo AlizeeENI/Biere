@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Gestionnaire de bieres</title>
+</head>
+<body>
+    <h1 style="color:red" data-th-text="${erreur}"/>
+    <form data-th-action="@{/biere}" data-th-object="${biere}" method="post">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" data-th-field="*{nom}"/>
+        <span data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"/> <br>
+
+        <label for="tyBiere">Type de biere</label>
+        <input type="text" id="tyBiere" data-th-field="*{tyBiere}"/>
+        <span data-th-if="${#fields.hasErrors('tyBiere')}" data-th-errors="*{tyBiere}"/> <br>
+
+        <label for="description">Description</label>
+        <input type="text" id="description" data-th-field="*{description}"/>
+        <span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}"/> <br>
+
+        <label for="dgAlcool">Degre d'alcool</label>
+        <input type="number" id="dgAlcool" data-th-field="*{dgAlcool}"/>
+        <span data-th-if="${#fields.hasErrors('dgAlcool')}" data-th-errors="*{dgAlcool}"/> <br>
+
+        <label for="note">Note</label>
+        <input type="number" id="note" data-th-field="*{note}"/>
+        <span data-th-if="${#fields.hasErrors('note')}" data-th-errors="*{note}"/> <br>
+
+
+        Brasserie<select name="idBrasserie">
+            <option data-th-each="brasseries : ${lstBrasseries}"
+                    data-th-text="${brasseries.nom}" data-th-value="${brasseries.idBrasserie}"></option>
+        </select> <br>
+
+        <input type ="submit" value="ajouter"/>
+    </form>
+<h1>Liste bieres</h1>
+    <p data-th-each="biere : ${lstBieres}">
+        <span data-th-text="${biere.idBiere}"/>
+        <span data-th-text="${biere.nom}"/>
+        <span data-th-text="${biere.tyBiere}"/>
+        <span data-th-text="${biere.description}"/>
+        <span data-th-text="${biere.dgAlcool}"/>
+        <span data-th-text="${biere.note}"/>
+        <span data-th-text="${biere.brasserie}"/>
+    </p>
+    <h1>Liste Brasseries</h1>
+    <p data-th-each="brasserie : ${lstBrasseries}">
+        <span data-th-text="${brasserie.idBrasserie}"/>
+        <span data-th-text="${brasserie.nom}"/>
+        <span data-th-text="${brasserie.adresse}"/>
+        <span data-th-text="${brasserie.coordGPS}"/>
+        <span data-th-text="${brasserie.dtOuverture}"/>
+    </p>
+
+</body>
+</html>

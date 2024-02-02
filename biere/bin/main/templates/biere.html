@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Gestionnaire de bières</title>
+</head>
+<body>
+    <h1 style="color:red" data-th-text="${erreur}"/>
+    <form data-th-action="@{/biere}" data-th-object="${biere}" method="post">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" data-th-field="*{nom}"/>
+        <span data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"/>
+
+        <label for="tyBiere">Type de bière</label>
+        <input type="text" id="tyBiere" data-th-field="*{tyBiere}"/>
+        <span data-th-if="${#fields.hasErrors('tyBiere')}" data-th-errors="*{tyBiere}"/>
+
+        <label for="description">Description</label>
+        <input type="text" id="description" data-th-field="*{description}"/>
+        <span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}"/>
+
+        <label for="dg_alcool">Degré d'alcool</label>
+        <input type="number" id="dg_alcool" data-th-field="*{dg_alcool}"/>
+        <span data-th-if="${#fields.hasErrors('dg_alcool')}" data-th-errors="*{dg_alcool}"/>
+
+        <label for="note">Note</label>
+        <input type="number" id="note" data-th-field="*{note}"/>
+        <span data-th-if="${#fields.hasErrors('note')}" data-th-errors="*{note}"/>
+
+        <label for="id_brasserie">Brasserie</label>
+        <select id="id_brasserie" data-th-field="*{id_brasserie}">
+            <option data-th-each="brasserie : ${lstBrasserie}"
+                    data-th-text="${brasserie.nom}" data-th-value="${brasserie.id}"></option>
+            <span data-th-if="${#fields.hasErrors('id_brasserie')}" data-th-errors="*{id_brasserie}"/>
+        </select>
+
+
+        <input type ="submit" value="ajouter"/>
+    </form>
+
+    <p data-th-each="biere : ${lstBieres}">
+        <span data-th-text="${biere.idBiere}"/>
+        <span data-th-text="${biere.nom}"/>
+        <span data-th-text="${biere.tyBiere}"/>
+        <span data-th-text="${biere.description}"/>
+        <span data-th-text="${biere.dg_alcool}"/>
+        <span data-th-text="${biere.note}"/>
+        <span data-th-text="${biere.id_brasserie}"/>
+    </p>
+
+</body>
+</html>
